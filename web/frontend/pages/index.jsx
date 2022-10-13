@@ -32,10 +32,6 @@ export default function HomePage() {
     setError(false)
     setLoading(true)
     client.get('/documents').then((response) => {
-      console.log(response.data['hydra:member'].filter(el => el.attributes.product_name != undefined).map(el => {
-        const details = el.attributes
-        return [details.product_name.en_GB, details.product_metatitle, 124689, 140, '$122,500.00']
-      }));
       setProducts(response.data['hydra:member'].filter(el => el.attributes.product_name != undefined))
     })
       .catch((error) => {
@@ -48,17 +44,7 @@ export default function HomePage() {
   React.useEffect(() => {
     fetchProducts()
   }, [])
-  const rows = [
-    ['Emerald Silk Gown', '$875.00', 124689, 140, '$122,500.00'],
-    ['Mauve Cashmere Scarf', '$230.00', 124533, 83, '$19,090.00'],
-    [
-      'Navy Merino Wool Blazer with khaki chinos and yellow belt',
-      '$445.00',
-      124518,
-      32,
-      '$14,240.00',
-    ],
-  ];
+
   return (
     <Page narrowWidth>
       <TitleBar title="Test App1" primaryAction={null} />
