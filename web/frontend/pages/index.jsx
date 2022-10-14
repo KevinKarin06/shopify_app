@@ -29,7 +29,6 @@ export default function HomePage() {
   }
 
   const fetchProducts = () => {
-    setError(false)
     setLoading(true)
     client.get('/documents').then((response) => {
       setProducts(response.data['hydra:member'].filter(el => el.attributes.product_name != undefined))
